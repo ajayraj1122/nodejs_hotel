@@ -63,6 +63,7 @@
 const express = require('express')
 const app = express();
 const db = require('./db');
+require('dotenv').config();
 
 // const person= require('./models/person');
 // const MenuItem = require('./models/MenuItem');
@@ -70,6 +71,8 @@ const db = require('./db');
 const bodyParser = require('body-parser');
  app.use(bodyParser.json());// json data lega usko object me parse/convert karega and store kr lega req.boby me
 
+ const PORT = process.env.PORT || 3000;
+ 
 app.get('/', function (req, res) {
   res.send('Hello Welcome to my hotel... How can i Help you? , we have a list of menus')
 })
@@ -114,7 +117,9 @@ const menuitemRoutes = require('./routes/menuitemroutes');
 app.use('/person',personRoutes);
 app.use('/MenuItem', menuitemRoutes);
 
-app.listen(3000, ()=>{
+
+
+app.listen(PORT, ()=>{
   console.log('listening on port 3000')
 })
 // ctrl + c server dead , and again karne ko nodemon server.js
